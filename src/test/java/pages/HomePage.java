@@ -14,7 +14,7 @@ public class HomePage extends BasePage{
     }
 
     public void waitForProjectIconDisplayed() {
-        log.info("Wating for project icon will be loaded");
+        log.info("Waiting for project icon will be uploaded");
         waitForElementDisplayed(PROJECT_ICON);
     }
 
