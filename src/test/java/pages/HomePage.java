@@ -9,7 +9,7 @@ public class HomePage extends BasePage{
 
     private final static By PROJECTS_TAB = By.xpath("//a[text()='Projects']");
     private final static By WORKSPACE_TAB = By.xpath("//a[text()='Workspace']");
-    private final static By USER_ICON = By.cssSelector("img[alt='Nikita Dunyashenko']");
+    private final static By USER_ICON = By.xpath("//span[@aria-label='Chat']/following-sibling::span/img");
     public HomePage(WebDriver driver) {
         super(driver);
     }
