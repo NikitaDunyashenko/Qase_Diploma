@@ -12,9 +12,9 @@ public class Select extends BaseElement{
         super(driver);
     }
 
-    public void chooseAccessType(String type) {
-        scrollToElement(driver.findElement(By.cssSelector(String.format(ACCESS_TYPE, type))));
-        log.info(String.format("choosing the select value: %s", type));
-        driver.findElement(By.cssSelector(String.format(ACCESS_TYPE, type))).click();
+    public void selectValue(String value) {
+        scrollToElement(driver.findElement(By.cssSelector(String.format(ACCESS_TYPE, value))));
+        log.info(String.format("choosing the select value: %s", value));
+        driver.findElement(By.cssSelector(String.format(ACCESS_TYPE, value))).click();
     }
 }

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class ProjectTests extends BaseTest {
 
     Faker faker = new Faker();
-    private final int idNumber = faker.number().numberBetween(1, 1000);
+    private final int ID_NUMBER = faker.number().numberBetween(1, 1000);
     private final static String PROJECT_NAME = "Qase_Diploma_";
     private final  static String PROJECT_ID = "QD";
     private final static String PROJECT_DESCRIPTION = "The project is designed to track test activities of qase.io";
@@ -29,8 +29,8 @@ public class ProjectTests extends BaseTest {
         projectsPage.clickCreateNewProject();
 
         Project project = new Project.ProjectBuilder()
-                .setProjectName(PROJECT_NAME + idNumber)
-                .setProjectCode(PROJECT_ID + idNumber)
+                .setProjectName(PROJECT_NAME + ID_NUMBER)
+                .setProjectCode(PROJECT_ID + ID_NUMBER)
                 .setProjectDescription(PROJECT_DESCRIPTION)
                 .setProjectAccessType(ProjectAccessType.PUBLIC)
                 .build();

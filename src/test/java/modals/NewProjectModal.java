@@ -18,6 +18,6 @@ public class NewProjectModal extends BaseModal{
         new Input(driver, "Project name").setInputValue(project.getProjectName());
         new Input(driver, "Project code").setInputValue(project.getProjectCode());
         new TextArea(driver, "Description").setTextAreaValue(project.getProjectDescription());
-        new Select(driver).chooseAccessType(project.getProjectAccessType().getName());
+        new Select(driver).selectValue(project.getProjectAccessType().getName());
     }
 }
