@@ -16,7 +16,7 @@ public class LoginTests extends BaseTest{
                 .setPasswordInput(PASSWORD)
                 .clickLoginButton()
                 .waitForProjectIconDisplayed();
-        Assert.assertTrue(homePage.isProjectIconDisplayed());
+        Assert.assertTrue(projectsPage.isProjectIconDisplayed());
     }
 
     @Severity(SeverityLevel.BLOCKER)

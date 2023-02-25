@@ -27,10 +27,10 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    public HomePage clickLoginButton() {
+    public ProjectsPage clickLoginButton() {
         log.info("Clicking the login button");
         driver.findElement(LOGIN_BUTTON).click();
-        return new HomePage(driver);
+        return new ProjectsPage(driver);
     }
 
     public String getErrorMessage() {

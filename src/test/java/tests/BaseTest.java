@@ -2,14 +2,14 @@ package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
+import modals.NewProjectModal;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import pages.HomePage;
-import pages.LoginPage;
+import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,7 +22,12 @@ public abstract class BaseTest {
 
     protected WebDriver driver;
     protected LoginPage loginPage;
+    protected ProjectsPage projectsPage;
+    protected BaseProjectPage baseProjectPage;
     protected HomePage homePage;
+    protected ProjectRepositoryPage projectRepositoryPage;
+    protected ProjectSettingsPage projectSettingsPage;
+    protected NewProjectModal newProjectModal;
 
     @BeforeClass(alwaysRun = true, description = "Setting up the driver")
     public void setUp() {
@@ -30,7 +35,7 @@ public abstract class BaseTest {
         log.info("Setting up the chrome driver");
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+        //options.addArguments("--headless");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--disable-popup-blocking");
         options.addArguments("--disable-notifications");
@@ -41,7 +46,12 @@ public abstract class BaseTest {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 
         loginPage = new LoginPage(driver);
+        projectsPage = new ProjectsPage(driver);
+        baseProjectPage = new BaseProjectPage(driver);
         homePage = new HomePage(driver);
+        projectRepositoryPage = new ProjectRepositoryPage(driver);
+        projectSettingsPage = new ProjectSettingsPage(driver);
+        newProjectModal = new NewProjectModal(driver);
     }
 
     @BeforeMethod(alwaysRun = true, description = "Website URL")
