@@ -2,7 +2,10 @@ package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
+import modals.DeleteProjectModal;
 import modals.NewProjectModal;
+import modals.NewSuiteModal;
+import modals.SuiteDetailsModal;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -28,6 +31,9 @@ public abstract class BaseTest {
     protected ProjectRepositoryPage projectRepositoryPage;
     protected ProjectSettingsPage projectSettingsPage;
     protected NewProjectModal newProjectModal;
+    protected NewSuiteModal newSuiteModal;
+    protected SuiteDetailsModal suiteDetailsModal;
+    protected DeleteProjectModal deleteProjectModal;
 
     @BeforeClass(alwaysRun = true, description = "Setting up the driver")
     public void setUp() {
@@ -52,6 +58,9 @@ public abstract class BaseTest {
         projectRepositoryPage = new ProjectRepositoryPage(driver);
         projectSettingsPage = new ProjectSettingsPage(driver);
         newProjectModal = new NewProjectModal(driver);
+        newSuiteModal = new NewSuiteModal(driver);
+        suiteDetailsModal = new SuiteDetailsModal(driver);
+        deleteProjectModal = new DeleteProjectModal(driver);
     }
 
     @BeforeMethod(alwaysRun = true, description = "Website URL")

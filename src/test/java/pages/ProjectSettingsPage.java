@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 @Log4j2
 public class ProjectSettingsPage extends BaseProjectPage {
@@ -14,6 +15,11 @@ public class ProjectSettingsPage extends BaseProjectPage {
     private final static By PROJECT_DESCRIPTION = By.id("description-area");
     private final static By PRIVATE_ACCESS_TYPE = By.cssSelector("[value=private");
     private final static By PUBLIC_ACCESS_TYPE = By.cssSelector("[value=public]");
+    private final static By DELETE_PROJECT_BUTTON = By.xpath("//*[text()=' Delete project']/parent::button");
+
+    public ProjectSettingsPage(WebDriver driver) {
+        super(driver);
+    }
 
     public Project getProjectDetails() {
         log.info("getting projects details from settings page");
@@ -23,10 +29,6 @@ public class ProjectSettingsPage extends BaseProjectPage {
         project.setProjectDescription(new ProjectSettingsPage(driver).getProjectDescription());
         project.setProjectAccessType(new ProjectSettingsPage(driver).getAccessTypeSelected());
         return project.build();
-    }
-
-    public ProjectSettingsPage(WebDriver driver) {
-        super(driver);
     }
 
     public String getProjectName() {
@@ -53,5 +55,11 @@ public class ProjectSettingsPage extends BaseProjectPage {
         } else {
             return null;
         }
+    }
+
+    public void clickDeleteProject() {
+        WebElement deleteProject = driver.findElement(DELETE_PROJECT_BUTTON);
+        log.info("clicking via javascript delete project button");
+        jsClick(deleteProject);
     }
 }
