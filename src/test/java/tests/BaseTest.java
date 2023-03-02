@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import modals.DeleteProjectModal;
@@ -22,6 +23,14 @@ public abstract class BaseTest {
     protected final static String BASE_URL = "https://app.qase.io/login";
     protected final static String USER_NAME = "nik123@mailinator.com";
     protected final static String PASSWORD = "Password@_1";
+    Faker faker = new Faker();
+    protected final int ID_NUMBER = faker.number().numberBetween(1, 1000);
+    protected final static String PROJECT_NAME = "Qase_Diploma_";
+    protected final  static String PROJECT_ID = "QD";
+    protected final static String PROJECT_DESCRIPTION = "The project is designed to track test activities of qase.io";
+    protected final static String SUITE_NAME = "Smoke";
+    protected final static String SUITE_DESCRIPTION = "Suite for smoke tests only";
+    protected final static String SUITE_PRECONDITIONS = "Preconditions";
 
     protected WebDriver driver;
     protected LoginPage loginPage;

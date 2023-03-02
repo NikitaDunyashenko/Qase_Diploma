@@ -1,6 +1,5 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import enums.ProjectAccessType;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -11,13 +10,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProjectTests extends BaseTest {
-
-    Faker faker = new Faker();
-    private final int ID_NUMBER = faker.number().numberBetween(1, 1000);
-    private final static String PROJECT_NAME = "Qase_Diploma_";
-    private final  static String PROJECT_ID = "QD";
-    private final static String PROJECT_DESCRIPTION = "The project is designed to track test activities of qase.io";
-
 
     @BeforeMethod
     public void login() {
@@ -63,7 +55,7 @@ public class ProjectTests extends BaseTest {
     @Test(groups = {"regression", "positive"})
     public void searchingForProjects() {
 
-        Assert.assertEquals(projectsPage.getListOfProjectsAfterSearching("Demo"), 0);
+        Assert.assertEquals(projectsPage.getIndicatorIfFilteredProjectsDisplayCorrectly("Demo"), 0);
 
     }
 

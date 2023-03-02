@@ -16,6 +16,7 @@ public class ProjectsPage extends HomePage{
     private final static By SEARCH_FOR_PROJECTS = By.cssSelector("[name=title]");
     private final static By PROJECT_RESULTS = By.cssSelector("a[class=defect-title]");
     private final static String SPECIFIC_PROJECT_LOCATOR = "//a[text()='%s']";
+    private final static By LOADING_ELEMENT = By.xpath("//span[contains(text(),'Loading')]");
 
     public ProjectsPage(WebDriver driver) {
         super(driver);
@@ -24,6 +25,16 @@ public class ProjectsPage extends HomePage{
     public void waitForProjectIconDisplayed() {
         log.info("Waiting for project icon will be uploaded");
         waitForElementDisplayed(PROJECT_ICON);
+    }
+
+    private void waitForLoadingElementDisplays() {
+        log.info("Waiting for loading element will be uploaded");
+        waitForElementDisplayed(LOADING_ELEMENT);
+    }
+
+    private void waitForLoadingElementDisappears() {
+        log.info("Waiting for loading element will be disappeared");
+        waitForElementDisappears(LOADING_ELEMENT);
     }
 
     public boolean isProjectIconDisplayed() {
@@ -49,24 +60,23 @@ public class ProjectsPage extends HomePage{
 
     public String getSpecificProjectNameFromSearch(String projectName) {
         searchForProject(projectName);
-        refreshThePage();
+        waitForLoadingElementDisplays();
+        waitForLoadingElementDisappears();
         log.info("getting the results after entering project name");
         List<WebElement> projectResults = driver.findElements(PROJECT_RESULTS);
         String firstProject = projectResults.get(0).getText();
         return firstProject;
     }
 
-    public int getListOfProjectsAfterSearching(String projectName) {
+    public int getIndicatorIfFilteredProjectsDisplayCorrectly(String projectName) {
         int num = 0;
         searchForProject(projectName);
-        refreshThePage();
+        waitForLoadingElementDisplays();
+        waitForLoadingElementDisappears();
         log.info("getting the results after entering project name");
         List<WebElement> projectResults = driver.findElements(PROJECT_RESULTS);
-        List<String> projectNames = new ArrayList<>();
         for(int i = 0; i < projectResults.size(); i++) {
-            String text = projectResults.get(i).getText();
-            projectNames.add(text);
-            if(projectNames.get(i).contains("Demo") == false){
+            if(projectResults.get(i).getText().contains(projectName) == false){
                 num++;
             }
         }

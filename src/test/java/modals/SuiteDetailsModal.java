@@ -48,12 +48,12 @@ public class SuiteDetailsModal extends BaseModal{
     }
 
     private By getLabelLocator(String labelName) {
-        log.info(String.format("getting locator of the following field: %s", labelName));
+        log.debug(String.format("getting locator of the following field: %s", labelName));
         return By.xpath(String.format(LABEL_LOCATOR, labelName));
     }
 
     private By getValueLocator(String tagName) {
-        log.info(String.format("getting locator of the following tagname: %s", tagName));
+        log.debug(String.format("getting locator of the following tagname: %s", tagName));
         return By.xpath(String.format(VALUE_LOCATOR, tagName));
     }
 

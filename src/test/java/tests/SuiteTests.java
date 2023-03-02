@@ -1,6 +1,5 @@
 package tests;
 
-import com.github.javafaker.Faker;
 import enums.ParentSuite;
 import enums.ProjectAccessType;
 import io.qameta.allure.Severity;
@@ -12,14 +11,6 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class SuiteTests extends BaseTest{
-    Faker faker = new Faker();
-    private final int ID_NUMBER = faker.number().numberBetween(1, 1000);
-    private final static String PROJECT_NAME = "Qase_Diploma_For_Suite";
-    private final  static String PROJECT_ID = "QDFS";
-    private final static String PROJECT_DESCRIPTION = "The project is designed to create new suites";
-    private final static String SUITE_NAME = "Smoke";
-    private final static String SUITE_DESCRIPTION = "Suite for smoke tests only";
-    private final static String SUITE_PRECONDITIONS = "Preconditions";
 
     @BeforeMethod(onlyForGroups = {"smoke", "positive"})
     public void createProject() {
