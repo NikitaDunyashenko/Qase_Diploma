@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class Input extends BaseElement{
     private String labelName;
-    private final static String INPUT_LOCATOR = "//label[text()='%s']/parent::div//following-sibling::div/input";
+    private final static String INPUT_LOCATOR = "//label[text()='%s']/parent::div//following-sibling::div//input";
 
     public Input(WebDriver driver, String labelName) {
         super(driver);
@@ -19,6 +19,7 @@ public class Input extends BaseElement{
         driver.findElement(By.xpath(String.format(INPUT_LOCATOR, this.labelName))).clear();
     }
     public void setInputValue(String inputValue) {
+        scrollToElement(driver.findElement(By.xpath(String.format(INPUT_LOCATOR, this.labelName))));
         clearInputValue();
         log.info(String.format("entering the input value: %s", inputValue));
         driver.findElement(By.xpath(String.format(INPUT_LOCATOR, this.labelName))).sendKeys(inputValue);

@@ -11,8 +11,13 @@ public abstract class BaseElement {
         this.driver = driver;
     }
 
-    public void scrollToElement(WebElement element) {
+    protected void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    protected void jsClick(WebElement element) {
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
     }
 
 

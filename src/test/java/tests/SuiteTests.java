@@ -82,6 +82,8 @@ public class SuiteTests extends BaseTest{
 
     }
 
+    @Severity(SeverityLevel.NORMAL)
+    @Description("checking if it's possible to edit properties of a suite")
     @Test(groups = {"regression", "positive"})
     public void editSuite() {
         projectRepositoryPage.clickToEditSuiteName(SUITE_NAME);

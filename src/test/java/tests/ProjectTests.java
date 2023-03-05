@@ -6,7 +6,9 @@ import io.qameta.allure.SeverityLevel;
 import jdk.jfr.Description;
 import models.Project;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class ProjectTests extends BaseTest {
@@ -19,17 +21,22 @@ public class ProjectTests extends BaseTest {
         projectsPage.waitForProjectIconDisplayed();
     }
 
+    @AfterMethod(onlyForGroups = {"smoke"})
+    public void logout() {
+        homePage.clickSignOutButton();
+    }
+
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking the possibility to create a new project")
-    @Test(groups = {"smoke", "positive"})
-    public void createNewProject() {
+    @Test(groups = {"smoke", "positive"}, dataProvider = "projectData")
+    public void createNewProject(String projectName, String projectId, String projectDescription, ProjectAccessType projectAccessType) {
         projectsPage.clickCreateNewProject();
 
         Project project = new Project.ProjectBuilder()
-                .setProjectName(PROJECT_NAME + ID_NUMBER)
-                .setProjectCode(PROJECT_ID + ID_NUMBER)
-                .setProjectDescription(PROJECT_DESCRIPTION)
-                .setProjectAccessType(ProjectAccessType.PUBLIC)
+                .setProjectName(projectName + ID_NUMBER)
+                .setProjectCode(projectId + ID_NUMBER)
+                .setProjectDescription(projectDescription)
+                .setProjectAccessType(projectAccessType)
                 .build();
 
         newProjectModal.fillForm(project);
@@ -57,6 +64,14 @@ public class ProjectTests extends BaseTest {
 
         Assert.assertEquals(projectsPage.getIndicatorIfFilteredProjectsDisplayCorrectly("Demo"), 0);
 
+    }
+
+    @DataProvider()
+    public Object[][] projectData() {
+        return new Object[][] {
+                {"Salesforce_", "SF", "The project is designed to track test activities of Salesforce", ProjectAccessType.PUBLIC},
+                {"SauceDemo_", "SD", "The project is designed to track test activities of SauceDemo", ProjectAccessType.PRIVATE},
+        };
     }
 
 }
