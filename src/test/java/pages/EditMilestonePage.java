@@ -12,6 +12,7 @@ public class EditMilestonePage extends BaseProjectPage{
     private final static String INPUT_LOCATOR = "//label[text()='%s']/parent::div//following-sibling::div//input";
     private final static String DATA_PLACEHOLDER_LOCATOR = "//label[text()='%s']//parent::div//following-sibling::div//p[@class]";
     private final static String DROPDOWN_LOCATOR = "//label[text()='%s']//parent::div//following-sibling::div//span/div";
+    private final static By SAVE_BUTTON = By.cssSelector("[type=submit]");
 
     public EditMilestonePage(WebDriver driver) {
         super(driver);

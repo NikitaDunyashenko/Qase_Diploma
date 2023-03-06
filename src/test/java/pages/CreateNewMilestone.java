@@ -5,10 +5,13 @@ import elements.Dropdown;
 import elements.Input;
 import lombok.extern.log4j.Log4j2;
 import models.Milestone;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
 public class CreateNewMilestone extends BaseProjectPage{
+
+    private final static By SAVE_BUTTON = By.cssSelector("[type=submit]");
 
     public CreateNewMilestone(WebDriver driver) {
         super(driver);

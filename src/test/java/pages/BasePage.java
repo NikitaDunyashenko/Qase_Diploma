@@ -11,7 +11,6 @@ public abstract class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected final static By SAVE_BUTTON = By.cssSelector("[type=submit]");
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -33,10 +32,6 @@ public abstract class BasePage {
 
     protected void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
-    protected void clickSaveButton() {
-        driver.findElement(SAVE_BUTTON).click();
     }
 
     protected void refreshThePage() {
