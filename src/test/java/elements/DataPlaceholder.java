@@ -20,6 +20,7 @@ public class DataPlaceholder extends BaseElement{
     }
 
     public void setDataPlaceholderValue(String value) {
+        scrollToElement(driver.findElement(By.xpath(String.format(DATA_PLACEHOLDER_LOCATOR, this.labelName))));
         clearDataPlaceholderValue();
         log.info(String.format("setting data placeholder value: %s", value));
         driver.findElement(By.xpath(String.format(DATA_PLACEHOLDER_LOCATOR, this.labelName))).sendKeys(value);

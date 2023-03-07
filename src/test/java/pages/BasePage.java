@@ -30,6 +30,10 @@ public abstract class BasePage {
         executor.executeScript("arguments[0].click();", element);
     }
 
+    protected void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
     protected void refreshThePage() {
         driver.navigate().refresh();
     }

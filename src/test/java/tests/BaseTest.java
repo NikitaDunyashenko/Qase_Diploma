@@ -3,10 +3,7 @@ package tests;
 import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
-import modals.DeleteProjectModal;
-import modals.NewProjectModal;
-import modals.NewSuiteModal;
-import modals.SuiteDetailsModal;
+import modals.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -43,6 +40,12 @@ public abstract class BaseTest {
     protected NewSuiteModal newSuiteModal;
     protected SuiteDetailsModal suiteDetailsModal;
     protected DeleteProjectModal deleteProjectModal;
+    protected CreateNewCasePage createNewCasePage;
+    protected TestCaseDetailsModal testCaseDetailsModal;
+    protected EditCasePage editCasePage;
+    protected MilestonePage milestonePage;
+    protected CreateNewMilestone createNewMilestone;
+    protected EditMilestonePage editMilestonePage;
 
     @BeforeClass(alwaysRun = true, description = "Setting up the driver")
     public void setUp() {
@@ -70,6 +73,12 @@ public abstract class BaseTest {
         newSuiteModal = new NewSuiteModal(driver);
         suiteDetailsModal = new SuiteDetailsModal(driver);
         deleteProjectModal = new DeleteProjectModal(driver);
+        createNewCasePage = new CreateNewCasePage(driver);
+        testCaseDetailsModal = new TestCaseDetailsModal(driver);
+        editCasePage = new EditCasePage(driver);
+        milestonePage = new MilestonePage(driver);
+        createNewMilestone = new CreateNewMilestone(driver);
+        editMilestonePage = new EditMilestonePage(driver);
     }
 
     @BeforeMethod(alwaysRun = true, description = "Website URL")
