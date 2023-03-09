@@ -55,7 +55,9 @@ public class ProjectsPage extends HomePage{
 
     private void searchForProject(String projectName) {
         log.info(String.format("entering the value: %s in search line", projectName));
-        driver.findElement(SEARCH_FOR_PROJECTS).sendKeys(projectName);
+        WebElement searchInput = driver.findElement(SEARCH_FOR_PROJECTS);
+        searchInput.clear();
+        searchInput.sendKeys(projectName);
     }
 
     public String getSpecificProjectNameFromSearch(String projectName) {

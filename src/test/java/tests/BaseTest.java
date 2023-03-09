@@ -7,14 +7,15 @@ import modals.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
+import org.openqa.selenium.safari.SafariDriver;
+import org.testng.ITestContext;
+import org.testng.annotations.*;
 import pages.*;
 
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
+@Listeners(TestListener.class)
 public abstract class BaseTest {
 
     protected final static String BASE_URL = "https://app.qase.io/login";
@@ -47,18 +48,26 @@ public abstract class BaseTest {
     protected CreateNewMilestone createNewMilestone;
     protected EditMilestonePage editMilestonePage;
 
+    @Parameters({"browser"})
     @BeforeClass(alwaysRun = true, description = "Setting up the driver")
-    public void setUp() {
+    public void setUp(String browserName, ITestContext testContext) {
 
         log.info("Setting up the chrome driver");
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        //options.addArguments("--headless");
-        options.addArguments("--ignore-certificate-errors");
-        options.addArguments("--disable-popup-blocking");
-        options.addArguments("--disable-notifications");
+        if (browserName.equals("chrome")) {
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions options = new ChromeOptions();
+            //options.addArguments("--headless");
+            options.addArguments("--ignore-certificate-errors");
+            options.addArguments("--disable-popup-blocking");
+            options.addArguments("--disable-notifications");
+            driver = new ChromeDriver(options);
+        } else if(browserName.equals("safari")) {
+            WebDriverManager.safaridriver().setup();
+            driver = new SafariDriver();
+        }
 
-        driver = new ChromeDriver(options);
+        testContext.setAttribute("driver", driver);
+
         log.info("Maximizing browser window");
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);

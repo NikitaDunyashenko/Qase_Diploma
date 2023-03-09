@@ -12,7 +12,7 @@ import org.testng.annotations.*;
 
 public class SuiteTests extends BaseTest{
 
-    @BeforeMethod(onlyForGroups = {"smoke", "positive"})
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"smoke", "positive"})
     public void createProject() {
         loginPage.setUserNameInput(USER_NAME);
         loginPage.setPasswordInput(PASSWORD);
@@ -32,7 +32,7 @@ public class SuiteTests extends BaseTest{
         newProjectModal.clickSaveButton();
     }
 
-    @BeforeMethod(onlyForGroups = {"regression"})
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"regression"})
     public void createSuite() {
         projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
         projectRepositoryPage.clickCreateNewSuiteButton();
@@ -48,7 +48,7 @@ public class SuiteTests extends BaseTest{
         newSuiteModal.clickSaveButton();
     }
 
-    @AfterMethod(onlyForGroups = {"smoke", "regression"})
+    @AfterMethod(alwaysRun = true, onlyForGroups = {"smoke", "regression"})
     public void deleteProject() {
         suiteDetailsModal.clickCloseModalSign();
         baseProjectPage.chooseMenuBarItem("Settings");
@@ -59,7 +59,7 @@ public class SuiteTests extends BaseTest{
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking if it is possible to create a new suite")
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void createNewSuite() {
         projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
         projectRepositoryPage.clickCreateNewSuiteButton();
@@ -84,7 +84,7 @@ public class SuiteTests extends BaseTest{
 
     @Severity(SeverityLevel.NORMAL)
     @Description("checking if it's possible to edit properties of a suite")
-    @Test(groups = {"regression", "positive"})
+    @Test(groups = {"regression", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void editSuite() {
         projectRepositoryPage.clickToEditSuiteName(SUITE_NAME);
 
