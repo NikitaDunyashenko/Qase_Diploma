@@ -12,10 +12,4 @@ public class Defect {
     private String actualResult;
     private int severity;
 
-    public static class DefectBuilder{
-
-        public DefectBuilder() {
-
-        }
-    }
 }

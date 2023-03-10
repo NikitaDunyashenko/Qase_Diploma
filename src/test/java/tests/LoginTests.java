@@ -4,6 +4,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import jdk.jfr.Description;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTests extends BaseTest{
@@ -21,21 +22,19 @@ public class LoginTests extends BaseTest{
 
     @Severity(SeverityLevel.BLOCKER)
     @Description("checking if the error message appears after entering the incorrect values")
-    @Test(groups = {"smoke", "negative"}, retryAnalyzer = RetryAnalyzer.class)
-    public void negativeLoginTest() {
-        loginPage.setUserNameInput("nik12345@mail.com")
-                .setPasswordInput("12345678")
+    @Test(groups = {"smoke", "negative"}, dataProvider = "negativeLoginData", retryAnalyzer = RetryAnalyzer.class)
+    public void negativeLoginTestOneFailed(String userName, String password, String errorMessage) {
+        loginPage.setUserNameInput(userName)
+                .setPasswordInput(password)
                 .clickLoginButton();
-        Assert.assertEquals(loginPage.getErrorMessage(), "These credentials do not match our records.");
+        Assert.assertEquals(loginPage.getErrorMessage(), errorMessage);
     }
 
-    @Severity(SeverityLevel.BLOCKER)
-    @Description("checking if the error message appears after entering the incorrect values")
-    @Test(groups = {"smoke", "negative"}, retryAnalyzer = RetryAnalyzer.class)
-    public void negativeLoginTestFailed() {
-        loginPage.setUserNameInput("nik12345@mail.com")
-                .setPasswordInput("12345678")
-                .clickLoginButton();
-        Assert.assertEquals(loginPage.getErrorMessage(), "These credentials do not match.");
+    @DataProvider()
+    public Object[][] negativeLoginData() {
+        return new Object[][] {
+                {"nik12345@mail.com", "12345678", "These credentials do not match our records."},
+                {"nik12345@mail.com", "12345678", "These credentials do not match."},
+        };
     }
 }

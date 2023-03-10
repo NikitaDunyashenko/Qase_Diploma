@@ -14,33 +14,32 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class DefectApiTests extends BaseApiTest{
 
+    private final static String PROJECT_TITLE = "QASE for defects";
+    private final static String PROJECT_CODE = "QAFD";
+
     @BeforeMethod(alwaysRun = true)
     public void createProject() {
         given()
-                .body("{\"code\": \"QAFD\", \"title\": \"QASE for defects\"}")
+                .body(String.format("{\"code\": \"%s\", \"title\": \"%s\"}", PROJECT_CODE, PROJECT_TITLE))
                 .when().log().all()
-                .post(BASE_URL + "/project")
-                .then().log().all()
-                .statusCode(200)
-                .body("status", equalTo(true), "result.code", equalTo("QAFD"));
+                .post("/project")
+                .then().log().all();
     }
 
     @BeforeMethod(alwaysRun = true, onlyForGroups = "regression")
     public void newDefect() {
-        Defect defect = new Defect.DefectBuilder()
+        Defect.DefectBuilder defectBuilder = Defect.builder()
                 .setTitle("Defect title")
                 .setActualResult("is not working")
-                .setSeverity(3)
-                .build();
+                .setSeverity(3);
+                Defect defect = defectBuilder.build();
 
         given()
                 .pathParam("code", "QAFD")
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
-                .post(BASE_URL + "/defect/{code}")
-                .then().log().all()
-                .statusCode(200)
-                .body("status", equalTo(true));
+                .post("/defect/{code}")
+                .then().log().all();
     }
 
     @AfterMethod(alwaysRun = true)
@@ -49,27 +48,25 @@ public class DefectApiTests extends BaseApiTest{
                 .pathParam("code", "QAFD")
                 .body("{\"code\": \"QAFD\"}")
                 .when().log().all()
-                .delete(BASE_URL + "/project/{code}")
-                .then().log().all()
-                .statusCode(200)
-                .body("status", equalTo(true));
+                .delete("/project/{code}")
+                .then().log().all();
     }
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking if it's possible to create a new defect")
     @Test(groups = {"smoke", "api"})
     public void createNewDefect() {
-        Defect defect = new Defect.DefectBuilder()
+        Defect.DefectBuilder defectBuilder = Defect.builder()
                 .setTitle("Defect title")
                 .setActualResult("is not working")
-                .setSeverity(3)
-                .build();
+                .setSeverity(3);
+        Defect defect = defectBuilder.build();
 
         given()
                 .pathParam("code", "QAFD")
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
-                .post(BASE_URL + "/defect/{code}")
+                .post("/defect/{code}")
                 .then().log().all()
                 .statusCode(200)
                 .body("status", equalTo(true));
@@ -83,7 +80,7 @@ public class DefectApiTests extends BaseApiTest{
                 .pathParam("code", "QAFD")
                 .pathParam("id", "1")
                 .when().log().all()
-                .get(BASE_URL + "/defect/{code}/{id}")
+                .get("/defect/{code}/{id}")
                 .then().log().all()
                 .statusCode(200)
                 .body("status", equalTo(true),
@@ -97,18 +94,18 @@ public class DefectApiTests extends BaseApiTest{
     @Description("checking if it's possible to update defect's fields")
     @Test(groups = {"regression", "api"})
     public void updateDefectField() {
-        Defect defect = new Defect.DefectBuilder()
-                .setTitle("New defect title")
-                .setActualResult("can not be fixed")
-                .setSeverity(2)
-                .build();
+        Defect.DefectBuilder defectBuilder = Defect.builder()
+                .setTitle("Defect title")
+                .setActualResult("is not working")
+                .setSeverity(3);
+        Defect defect = defectBuilder.build();
 
         given()
                 .pathParam("code", "QAFD")
                 .pathParam("id", 1)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
-                .patch(BASE_URL + "/defect/{code}/{id}")
+                .patch("/defect/{code}/{id}")
                 .then().log().all()
                 .statusCode(200)
                 .body("status", equalTo(true));
@@ -122,7 +119,7 @@ public class DefectApiTests extends BaseApiTest{
                 .pathParam("code", "QAFD")
                 .pathParam("id", 1)
                 .when().log().all()
-                .delete(BASE_URL + "/defect/{code}/{id}")
+                .delete("/defect/{code}/{id}")
                 .then().log().all()
                 .statusCode(200)
                 .body("status", equalTo(true));

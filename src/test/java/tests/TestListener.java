@@ -1,5 +1,6 @@
 package tests;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -7,24 +8,25 @@ import utils.AllureUtils;
 
 import java.util.Date;
 
+@Log4j2
 public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
         ITestListener.super.onTestStart(result);
-        System.out.println("Test " + result.getName() + " started at" + new Date().toString());
+        log.info(String.format("Test %s started at %s", result.getName(), new Date().toString()));
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
-        System.out.println("Test " + result.getName() + " succeeded");
+        log.info(String.format("Test %s succeeded", result.getName()));
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         ITestListener.super.onTestFailure(result);
-        System.out.println("Test " + result.getName() + " failed");
+        log.info(String.format("Test %s failed", result.getName()));
         WebDriver driver = (WebDriver) result.getTestContext().getAttribute("driver");
         AllureUtils.attachScreenshot(driver);
     }
