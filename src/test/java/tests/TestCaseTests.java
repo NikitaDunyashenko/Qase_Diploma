@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class TestCaseTests extends BaseTest {
 
-    @BeforeMethod(onlyForGroups = {"smoke"})
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"smoke"})
     public void createProject() {
         loginPage.setUserNameInput(USER_NAME);
         loginPage.setPasswordInput(PASSWORD);
@@ -33,7 +33,7 @@ public class TestCaseTests extends BaseTest {
         newProjectModal.clickSaveButton();
     }
 
-    @BeforeMethod(onlyForGroups = {"smoke"})
+    @BeforeMethod(alwaysRun = true, onlyForGroups = {"smoke"})
     public void createSuite() {
         projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
         projectRepositoryPage.clickCreateNewSuiteButton();
@@ -51,7 +51,7 @@ public class TestCaseTests extends BaseTest {
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking if it's possible to create new case")
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void createNewCase() {
         projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
         projectRepositoryPage.clickToAddNewItem("Smoke");

@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class MilestoneTests extends BaseTest{
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void createProject() {
         loginPage.setUserNameInput(USER_NAME);
         loginPage.setPasswordInput(PASSWORD);
@@ -35,7 +35,7 @@ public class MilestoneTests extends BaseTest{
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking if it's possible to create new milestone")
-    @Test(groups = {"smoke", "positive"})
+    @Test(groups = {"smoke", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void createNewMilestone() {
         projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
         baseProjectPage.chooseMenuBarItem("Milestones");

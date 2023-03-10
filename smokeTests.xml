@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Tests">
+    <test name="Smoke Tests at chrome">
+        <parameter name="browser" value="chrome"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.LoginTests"/>
+            <class name="tests.MilestoneTests"/>
+            <class name="tests.ProjectTests"/>
+            <class name="tests.SuiteTests"/>
+            <class name="tests.TestCaseTests"/>
+        </classes>
+    </test>
+</suite>

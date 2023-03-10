@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 
 public class ProjectTests extends BaseTest {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         loginPage.setUserNameInput(USER_NAME);
         loginPage.setPasswordInput(PASSWORD);
@@ -21,14 +21,14 @@ public class ProjectTests extends BaseTest {
         projectsPage.waitForProjectIconDisplayed();
     }
 
-    @AfterMethod(onlyForGroups = {"smoke"})
+    @AfterMethod(alwaysRun = true)
     public void logout() {
         homePage.clickSignOutButton();
     }
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking the possibility to create a new project")
-    @Test(groups = {"smoke", "positive"}, dataProvider = "projectData")
+    @Test(groups = {"smoke", "positive"}, dataProvider = "projectData", retryAnalyzer = RetryAnalyzer.class)
     public void createNewProject(String projectName, String projectId, String projectDescription, ProjectAccessType projectAccessType) {
         projectsPage.clickCreateNewProject();
 
@@ -50,7 +50,7 @@ public class ProjectTests extends BaseTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("checking if a project that has been searched for is in the first row after entering text to the searcher line")
-    @Test(groups = {"regression", "positive"})
+    @Test(groups = {"regression", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void searchingForSpecificProject() {
 
         Assert.assertEquals(projectsPage.getSpecificProjectNameFromSearch("Qase_Diploma"), "Qase_Diploma");
@@ -59,7 +59,7 @@ public class ProjectTests extends BaseTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("checking if a represented information is correct after entering text to the searcher line")
-    @Test(groups = {"regression", "positive"})
+    @Test(groups = {"regression", "positive"}, retryAnalyzer = RetryAnalyzer.class)
     public void searchingForProjects() {
 
         Assert.assertEquals(projectsPage.getIndicatorIfFilteredProjectsDisplayCorrectly("Demo"), 0);
