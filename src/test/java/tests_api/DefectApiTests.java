@@ -28,11 +28,11 @@ public class DefectApiTests extends BaseApiTest{
 
     @BeforeMethod(alwaysRun = true, onlyForGroups = "regression")
     public void newDefect() {
-        Defect.DefectBuilder defectBuilder = Defect.builder()
+        Defect defect = Defect.builder()
                 .setTitle("Defect title")
                 .setActualResult("is not working")
-                .setSeverity(3);
-                Defect defect = defectBuilder.build();
+                .setSeverity(3)
+                .build();
 
         given()
                 .pathParam("code", "QAFD")
@@ -56,11 +56,11 @@ public class DefectApiTests extends BaseApiTest{
     @Description("checking if it's possible to create a new defect")
     @Test(groups = {"smoke", "api"})
     public void createNewDefect() {
-        Defect.DefectBuilder defectBuilder = Defect.builder()
+        Defect defect = Defect.builder()
                 .setTitle("Defect title")
                 .setActualResult("is not working")
-                .setSeverity(3);
-        Defect defect = defectBuilder.build();
+                .setSeverity(3)
+                .build();
 
         given()
                 .pathParam("code", "QAFD")
@@ -94,11 +94,11 @@ public class DefectApiTests extends BaseApiTest{
     @Description("checking if it's possible to update defect's fields")
     @Test(groups = {"regression", "api"})
     public void updateDefectField() {
-        Defect.DefectBuilder defectBuilder = Defect.builder()
+        Defect defect = Defect.builder()
                 .setTitle("Defect title")
                 .setActualResult("is not working")
-                .setSeverity(3);
-        Defect defect = defectBuilder.build();
+                .setSeverity(3)
+                .build();
 
         given()
                 .pathParam("code", "QAFD")
