@@ -3,7 +3,6 @@ package modals;
 import elements.DataPlaceholder;
 import elements.Dropdown;
 import elements.Input;
-import enums.ParentSuite;
 import lombok.extern.log4j.Log4j2;
 import models.Suite;
 import org.openqa.selenium.WebDriver;

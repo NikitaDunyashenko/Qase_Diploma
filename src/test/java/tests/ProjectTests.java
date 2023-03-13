@@ -21,6 +21,34 @@ public class ProjectTests extends BaseTest {
         projectsPage.waitForProjectIconDisplayed();
     }
 
+    @BeforeMethod(alwaysRun = true, onlyForGroups = "needsProject")
+    public void newProject() {
+        projectsPage.clickCreateNewProject();
+
+        Project project = new Project.ProjectBuilder()
+                .setProjectName(PROJECT_NAME_OTHER)
+                .setProjectCode(PROJECT_ID)
+                .setProjectDescription(PROJECT_DESCRIPTION)
+                .setProjectAccessType(ProjectAccessType.PUBLIC)
+                .build();
+
+        newProjectModal.fillForm(project);
+        newProjectModal.clickSaveButton();
+        projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
+        homePage.clickOnProjectsTab();
+        projectsPage.waitForProjectIconDisplayed();
+    }
+
+    @AfterMethod(alwaysRun = true, onlyForGroups = "needsProject")
+    public void deleteProject() {
+        projectsPage.clickOnSpecificProject(PROJECT_NAME_OTHER);
+        projectRepositoryPage.waitForCreateNewSuiteIsDisplayed();
+        baseProjectPage.chooseMenuBarItem("Settings");
+        projectSettingsPage.clickDeleteProject();
+        deleteProjectModal.waitForDeleteButtonDisplays();
+        deleteProjectModal.clickDeleteProject();
+    }
+
     @AfterMethod(alwaysRun = true)
     public void logout() {
         homePage.clickSignOutButton();
@@ -50,10 +78,10 @@ public class ProjectTests extends BaseTest {
 
     @Severity(SeverityLevel.NORMAL)
     @Description("checking if a project that has been searched for is in the first row after entering text to the searcher line")
-    @Test(groups = {"regression", "positive"}, retryAnalyzer = RetryAnalyzer.class)
+    @Test(groups = {"regression", "positive", "needsProject"}, retryAnalyzer = RetryAnalyzer.class)
     public void searchingForSpecificProject() {
 
-        Assert.assertEquals(projectsPage.getSpecificProjectNameFromSearch("Qase_Diploma"), "Qase_Diploma");
+        Assert.assertEquals(projectsPage.getSpecificProjectNameFromSearch(PROJECT_NAME_OTHER), "Test_Project");
 
     }
 
