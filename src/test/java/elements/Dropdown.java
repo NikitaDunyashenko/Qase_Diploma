@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class Dropdown extends BaseElement{
     private String labelName;
-    private final static String DROPDOWN_LOCATOR = "//label[text()='%s']//parent::div/following-sibling::div/button";
+    private final static String DROPDOWN_LOCATOR = "//label[text()='%s']//parent::div/following-sibling::div//span";
     private final static String DROPDOWN_VALUE = "//div[text()='%s']";
     public Dropdown(WebDriver driver, String labelName) {
         super(driver);

@@ -11,7 +11,7 @@ public class EditCasePage extends BaseProjectPage{
 
     private final static String INPUT_LOCATOR = "//label[text()='%s']/parent::div//following-sibling::div//input";
     private final static String DATA_PLACEHOLDER_LOCATOR = "//label[text()='%s']//parent::div//following-sibling::div//p[@class]";
-    private final static String DROPDOWN_OPTION_LOCATOR = "//label[text()='%s']//parent::div//button/span/div";
+    private final static String DROPDOWN_OPTION_LOCATOR = "//label[text()='%s']//parent::div//div[@class='RZYgph']";
     private final static String DATA_PLACEHOLDER_FOR_STEPS_LOCATOR = "//div[@title='%d']//parent::div/parent::div/following-sibling::div//p[text()='%s']//parent::div/parent::div/parent::div/following-sibling::div//p";
     private final static By LOADING_ELEMENT = By.xpath("//span[contains(text(),'Loading')]");
 

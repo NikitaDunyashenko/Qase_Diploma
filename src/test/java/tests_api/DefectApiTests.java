@@ -5,9 +5,7 @@ import io.qameta.allure.SeverityLevel;
 import io.restassured.mapper.ObjectMapperType;
 import jdk.jfr.Description;
 import models.Defect;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -17,7 +15,7 @@ public class DefectApiTests extends BaseApiTest{
     private final static String PROJECT_TITLE = "QASE for defects";
     private final static String PROJECT_CODE = "QAFD";
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeClass(alwaysRun = true)
     public void createProject() {
         given()
                 .body(String.format("{\"code\": \"%s\", \"title\": \"%s\"}", PROJECT_CODE, PROJECT_TITLE))
@@ -26,7 +24,7 @@ public class DefectApiTests extends BaseApiTest{
                 .then().log().all();
     }
 
-    @BeforeMethod(alwaysRun = true, onlyForGroups = "regression")
+    @BeforeClass(alwaysRun = true)
     public void newDefect() {
         Defect defect = Defect.builder()
                 .setTitle("Defect title")
@@ -35,17 +33,17 @@ public class DefectApiTests extends BaseApiTest{
                 .build();
 
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
                 .post("/defect/{code}")
                 .then().log().all();
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void deleteProject() {
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .body("{\"code\": \"QAFD\"}")
                 .when().log().all()
                 .delete("/project/{code}")
@@ -63,7 +61,7 @@ public class DefectApiTests extends BaseApiTest{
                 .build();
 
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
                 .post("/defect/{code}")
@@ -77,7 +75,7 @@ public class DefectApiTests extends BaseApiTest{
     @Test(groups = {"regression", "api"})
     public void getSpecificDefect() {
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .pathParam("id", "1")
                 .when().log().all()
                 .get("/defect/{code}/{id}")
@@ -101,7 +99,7 @@ public class DefectApiTests extends BaseApiTest{
                 .build();
 
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .pathParam("id", 1)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
@@ -113,10 +111,10 @@ public class DefectApiTests extends BaseApiTest{
 
     @Severity(SeverityLevel.CRITICAL)
     @Description("checking if it's possible to delete a defect")
-    @Test(groups = {"regression", "api"})
+    @Test(groups = {"smoke", "api"})
     public void deleteDefect() {
         given()
-                .pathParam("code", "QAFD")
+                .pathParam("code", PROJECT_CODE)
                 .pathParam("id", 1)
                 .when().log().all()
                 .delete("/defect/{code}/{id}")

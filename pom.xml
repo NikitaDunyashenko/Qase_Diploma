@@ -97,7 +97,7 @@
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
         <maven.compiler.target>18</maven.compiler.target>
-        <suiteXmlFile>smokeTests.xml</suiteXmlFile>
+        <suiteXmlFile>regressionApiTests.xml</suiteXmlFile>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 

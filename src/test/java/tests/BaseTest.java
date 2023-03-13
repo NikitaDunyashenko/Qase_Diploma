@@ -25,6 +25,7 @@ public abstract class BaseTest {
     Faker faker = new Faker();
     protected final int ID_NUMBER = faker.number().numberBetween(1, 1000);
     protected final static String PROJECT_NAME = "Qase_Diploma_";
+    protected final static String PROJECT_NAME_OTHER = "Test_Project";
     protected final  static String PROJECT_ID = "QD";
     protected final static String PROJECT_DESCRIPTION = "The project is designed to track test activities of qase.io";
     protected final static String SUITE_NAME = "Smoke";
@@ -57,7 +58,7 @@ public abstract class BaseTest {
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-notifications");

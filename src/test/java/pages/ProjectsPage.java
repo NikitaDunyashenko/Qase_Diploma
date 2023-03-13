@@ -78,7 +78,7 @@ public class ProjectsPage extends HomePage{
         log.info("getting the results after entering project name");
         List<WebElement> projectResults = driver.findElements(PROJECT_RESULTS);
         for(int i = 0; i < projectResults.size(); i++) {
-            if(projectResults.get(i).getText().contains(projectName) == false){
+            if(!projectResults.get(i).getText().contains(projectName)){
                 num++;
             }
         }
