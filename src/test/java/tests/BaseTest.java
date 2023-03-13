@@ -12,7 +12,6 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 import utils.PropertyReader;
-
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
@@ -58,7 +57,7 @@ public abstract class BaseTest {
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-notifications");

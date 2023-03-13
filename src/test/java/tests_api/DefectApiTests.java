@@ -6,7 +6,6 @@ import io.restassured.mapper.ObjectMapperType;
 import jdk.jfr.Description;
 import models.Defect;
 import org.testng.annotations.*;
-
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -14,6 +13,7 @@ public class DefectApiTests extends BaseApiTest{
 
     private final static String PROJECT_TITLE = "QASE for defects";
     private final static String PROJECT_CODE = "QAFD";
+    private final static int DEFECT_ID = 1;
 
     @BeforeClass(alwaysRun = true)
     public void createProject() {
@@ -44,7 +44,7 @@ public class DefectApiTests extends BaseApiTest{
     public void deleteProject() {
         given()
                 .pathParam("code", PROJECT_CODE)
-                .body("{\"code\": \"QAFD\"}")
+                .body(String.format("{\"code\": \"%s\"}", PROJECT_CODE))
                 .when().log().all()
                 .delete("/project/{code}")
                 .then().log().all();
@@ -76,7 +76,7 @@ public class DefectApiTests extends BaseApiTest{
     public void getSpecificDefect() {
         given()
                 .pathParam("code", PROJECT_CODE)
-                .pathParam("id", "1")
+                .pathParam("id", DEFECT_ID)
                 .when().log().all()
                 .get("/defect/{code}/{id}")
                 .then().log().all()
@@ -93,14 +93,14 @@ public class DefectApiTests extends BaseApiTest{
     @Test(groups = {"regression", "api"})
     public void updateDefectField() {
         Defect defect = Defect.builder()
-                .setTitle("Defect title")
-                .setActualResult("is not working")
-                .setSeverity(3)
+                .setTitle("new defect title")
+                .setActualResult("is still not working")
+                .setSeverity(2)
                 .build();
 
         given()
                 .pathParam("code", PROJECT_CODE)
-                .pathParam("id", 1)
+                .pathParam("id", DEFECT_ID)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
                 .patch("/defect/{code}/{id}")
@@ -115,7 +115,7 @@ public class DefectApiTests extends BaseApiTest{
     public void deleteDefect() {
         given()
                 .pathParam("code", PROJECT_CODE)
-                .pathParam("id", 1)
+                .pathParam("id", DEFECT_ID)
                 .when().log().all()
                 .delete("/defect/{code}/{id}")
                 .then().log().all()
