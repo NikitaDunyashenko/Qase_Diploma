@@ -2,6 +2,7 @@ package elements;
 
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
@@ -23,5 +24,10 @@ public class Input extends BaseElement{
         clearInputValue();
         log.info(String.format("entering the input value: %s", inputValue));
         driver.findElement(By.xpath(String.format(INPUT_LOCATOR, this.labelName))).sendKeys(inputValue);
+    }
+
+    public void clickEnterAfterInput() {
+        log.info("clicking enter after input");
+        driver.findElement(By.xpath(String.format(INPUT_LOCATOR, this.labelName))).sendKeys(Keys.ENTER);
     }
 }

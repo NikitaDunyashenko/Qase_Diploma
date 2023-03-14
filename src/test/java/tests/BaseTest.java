@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.extern.log4j.Log4j2;
 import modals.*;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -95,6 +96,12 @@ public abstract class BaseTest {
     public void navigate() {
         log.info(String.format("Redirecting to the website: %s", BASE_URL));
         driver.get(BASE_URL);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void deleteLocalAndSessionStorage() {
+        ((JavascriptExecutor)(driver)).executeScript("window.localStorage.clear();");
+        ((JavascriptExecutor)(driver)).executeScript("window.sessionStorage.clear();");
     }
 
     @AfterClass(alwaysRun = true, description = "Quiting the browser")

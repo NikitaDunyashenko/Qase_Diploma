@@ -31,7 +31,6 @@ public class DefectApiTests extends BaseApiTest{
                 .setActualResult("is not working")
                 .setSeverity(3)
                 .build();
-
         given()
                 .pathParam("code", PROJECT_CODE)
                 .body(defect, ObjectMapperType.GSON)
@@ -113,9 +112,25 @@ public class DefectApiTests extends BaseApiTest{
     @Description("checking if it's possible to delete a defect")
     @Test(groups = {"smoke", "api"})
     public void deleteDefect() {
+        Defect defect = Defect.builder()
+                .setTitle("Defect title")
+                .setActualResult("is not working")
+                .setSeverity(3)
+                .build();
+
+        String defectId = given()
+                .pathParam("code", PROJECT_CODE)
+                .body(defect, ObjectMapperType.GSON)
+                .when().log().all()
+                .post("/defect/{code}")
+                .then().log().all()
+                .extract().path("result.id").toString();
+
+        int defectIdToInt = Integer.parseInt(defectId);
+
         given()
                 .pathParam("code", PROJECT_CODE)
-                .pathParam("id", DEFECT_ID)
+                .pathParam("id", defectIdToInt)
                 .when().log().all()
                 .delete("/defect/{code}/{id}")
                 .then().log().all()

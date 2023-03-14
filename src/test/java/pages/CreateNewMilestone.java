@@ -23,6 +23,7 @@ public class CreateNewMilestone extends BaseProjectPage{
         new DataPlaceholder(driver, "Description").setDataPlaceholderValue(milestone.getDescription());
         new Dropdown(driver, "Status").chooseDropdownValue(milestone.getStatusMilestone().getName());
         new Input(driver, "Due date").setInputValue(milestone.getDate());
+        new Input(driver, "Due date").clickEnterAfterInput();
     }
 
     public void clickSaveButton() {
