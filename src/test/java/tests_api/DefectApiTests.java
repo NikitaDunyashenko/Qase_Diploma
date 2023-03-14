@@ -24,7 +24,7 @@ public class DefectApiTests extends BaseApiTest{
                 .then().log().all();
     }
 
-    @BeforeClass(alwaysRun = true, dependsOnGroups = "regression")
+    @BeforeClass(alwaysRun = true)
     public void newDefect() {
         Defect defect = Defect.builder()
                 .setTitle("Defect title")
@@ -118,7 +118,7 @@ public class DefectApiTests extends BaseApiTest{
                 .setSeverity(3)
                 .build();
 
-        String userId = given()
+        String defectId = given()
                 .pathParam("code", PROJECT_CODE)
                 .body(defect, ObjectMapperType.GSON)
                 .when().log().all()
@@ -126,11 +126,11 @@ public class DefectApiTests extends BaseApiTest{
                 .then().log().all()
                 .extract().path("result.id").toString();
 
-        int userIdToInt = Integer.parseInt(userId);
+        int defectIdToInt = Integer.parseInt(defectId);
 
         given()
                 .pathParam("code", PROJECT_CODE)
-                .pathParam("id", userIdToInt)
+                .pathParam("id", defectIdToInt)
                 .when().log().all()
                 .delete("/defect/{code}/{id}")
                 .then().log().all()

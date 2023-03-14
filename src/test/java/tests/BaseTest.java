@@ -99,12 +99,8 @@ public abstract class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void deleteLocalStorage() {
+    public void deleteLocalAndSessionStorage() {
         ((JavascriptExecutor)(driver)).executeScript("window.localStorage.clear();");
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void deleteSessionStorage() {
         ((JavascriptExecutor)(driver)).executeScript("window.sessionStorage.clear();");
     }
 
