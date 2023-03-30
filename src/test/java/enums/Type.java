@@ -19,7 +19,7 @@ public enum Type {
 
     public static Type fromString(String name) {
         for (Type type : Type.values()) {
-            if(type.getName().equals(name)) {
+            if (type.getName().equals(name)) {
                 return type;
             }
         }

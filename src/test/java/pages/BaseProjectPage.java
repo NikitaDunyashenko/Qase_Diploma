@@ -5,9 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class BaseProjectPage extends HomePage{
+public class BaseProjectPage extends HomePage {
 
     private final static String MENU_BAR_ITEMS = "[title=%s]";
+
     public BaseProjectPage(WebDriver driver) {
         super(driver);
     }

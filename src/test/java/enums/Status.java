@@ -16,7 +16,7 @@ public enum Status {
 
     public static Status fromString(String value) {
         for (Status status : Status.values()) {
-            if(status.getName().equals(value)){
+            if (status.getName().equals(value)) {
                 return status;
             }
         }

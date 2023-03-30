@@ -5,12 +5,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     private final static By USER_NAME_INPUT = By.id("inputEmail");
     private final static By PASSWORD_INPUT = By.id("inputPassword");
     private final static By LOGIN_BUTTON = By.id("btnLogin");
     private final static By ERROR_MESSAGE = By.xpath("//*[@class='form-control-feedback']");
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }

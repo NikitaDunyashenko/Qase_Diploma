@@ -1,12 +1,12 @@
 package tests_api;
 
 import io.restassured.RestAssured;
-import io.restassured.http.*;
-import org.apache.http.protocol.*;
+import io.restassured.http.ContentType;
+import org.apache.http.protocol.HTTP;
 import org.testng.annotations.BeforeTest;
 import utils.PropertyReader;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 
 public abstract class BaseApiTest {
 

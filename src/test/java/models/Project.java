@@ -3,6 +3,7 @@ package models;
 import enums.ProjectAccessType;
 import lombok.Builder;
 import lombok.Getter;
+
 import java.util.Objects;
 
 @Getter
@@ -24,8 +25,9 @@ public class Project {
                 && Objects.equals(projectDescription, project.projectDescription)
                 && projectAccessType == project.projectAccessType;
     }
-    public static class ProjectBuilder{
-        public ProjectBuilder(){
+
+    public static class ProjectBuilder {
+        public ProjectBuilder() {
 
         }
     }

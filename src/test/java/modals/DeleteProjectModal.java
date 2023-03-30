@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class DeleteProjectModal extends BaseModal{
+public class DeleteProjectModal extends BaseModal {
 
     private final static By DELETE_PROJECT = By.xpath("//*[text()='Delete project']/parent::button");
 

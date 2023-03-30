@@ -5,11 +5,14 @@ import io.qameta.allure.SeverityLevel;
 import io.restassured.mapper.ObjectMapperType;
 import jdk.jfr.Description;
 import models.Defect;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class DefectApiTests extends BaseApiTest{
+public class DefectApiTests extends BaseApiTest {
 
     private final static String PROJECT_TITLE = "QASE for defects";
     private final static String PROJECT_CODE = "QAFD";

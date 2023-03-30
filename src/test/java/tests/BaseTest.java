@@ -13,6 +13,7 @@ import org.testng.ITestContext;
 import org.testng.annotations.*;
 import pages.*;
 import utils.PropertyReader;
+
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
@@ -26,7 +27,7 @@ public abstract class BaseTest {
     protected final int ID_NUMBER = faker.number().numberBetween(1, 1000);
     protected final static String PROJECT_NAME = "Qase_Diploma_";
     protected final static String PROJECT_NAME_OTHER = "Test_Project";
-    protected final  static String PROJECT_ID = "QD";
+    protected final static String PROJECT_ID = "QD";
     protected final static String PROJECT_DESCRIPTION = "The project is designed to track test activities of qase.io";
     protected final static String SUITE_NAME = "Smoke";
     protected final static String SUITE_DESCRIPTION = "Suite for smoke tests only";
@@ -58,12 +59,12 @@ public abstract class BaseTest {
         if (browserName.equals("chrome")) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--headless");
+            //options.addArguments("--headless");
             options.addArguments("--ignore-certificate-errors");
             options.addArguments("--disable-popup-blocking");
             options.addArguments("--disable-notifications");
             driver = new ChromeDriver(options);
-        } else if(browserName.equals("safari")) {
+        } else if (browserName.equals("safari")) {
             WebDriverManager.safaridriver().setup();
             driver = new SafariDriver();
         }
@@ -100,8 +101,8 @@ public abstract class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void deleteLocalAndSessionStorage() {
-        ((JavascriptExecutor)(driver)).executeScript("window.localStorage.clear();");
-        ((JavascriptExecutor)(driver)).executeScript("window.sessionStorage.clear();");
+        ((JavascriptExecutor) (driver)).executeScript("window.localStorage.clear();");
+        ((JavascriptExecutor) (driver)).executeScript("window.sessionStorage.clear();");
     }
 
     @AfterClass(alwaysRun = true, description = "Quiting the browser")

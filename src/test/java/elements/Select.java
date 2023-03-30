@@ -5,9 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class Select extends BaseElement{
+public class Select extends BaseElement {
 
     private final static String ACCESS_TYPE = "[value=%s]";
+
     public Select(WebDriver driver) {
         super(driver);
     }

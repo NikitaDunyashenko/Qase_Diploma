@@ -15,7 +15,7 @@ public enum Priority {
 
     public static Priority fromString(String value) {
         for (Priority priority : Priority.values()) {
-            if(priority.getName().equals(value)){
+            if (priority.getName().equals(value)) {
                 return priority;
             }
         }

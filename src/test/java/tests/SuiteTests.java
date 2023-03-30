@@ -8,9 +8,11 @@ import jdk.jfr.Description;
 import models.Project;
 import models.Suite;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class SuiteTests extends BaseTest{
+public class SuiteTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true, onlyForGroups = {"smoke", "positive"})
     public void createProject() {

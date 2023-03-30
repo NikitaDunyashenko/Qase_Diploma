@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 @Log4j2
-public class SuiteDetailsModal extends BaseModal{
+public class SuiteDetailsModal extends BaseModal {
 
     private final static String LABEL_LOCATOR = "//label[text()='%s']";
     private final static String VALUE_LOCATOR = ".//parent::div//following-sibling::div//%s";

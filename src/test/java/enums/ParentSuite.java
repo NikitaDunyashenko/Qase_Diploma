@@ -16,7 +16,7 @@ public enum ParentSuite {
 
     public static ParentSuite fromString(String value) {
         for (ParentSuite parentSuite : ParentSuite.values()) {
-            if(parentSuite.getName().equals(value)){
+            if (parentSuite.getName().equals(value)) {
                 return parentSuite;
             }
         }
