@@ -1,8 +1,8 @@
 package tests;
 
 import enums.*;
-import io.qameta.allure.*;
 import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import jdk.jfr.Description;
 import models.Project;
 import models.Suite;

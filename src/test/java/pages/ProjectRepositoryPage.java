@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 @Log4j2
-public class ProjectRepositoryPage extends BaseProjectPage{
+public class ProjectRepositoryPage extends BaseProjectPage {
 
     private final static By CREATE_NEW_SUITE_BUTTON = By.id("create-suite-button");
     private final static By CREATE_NEW_CASE_BUTTON = By.id("create-case-button");
@@ -16,6 +16,7 @@ public class ProjectRepositoryPage extends BaseProjectPage{
     private final static By ADD_NEW_CASE_ITEM = By.xpath("//i[@class='fas fa-plus']/ancestor::button");
     private final static String CREATE_NEW_ITEM = "//*[text()='%s']/descendant::i";
     private final static String TEST_CASE_BUTTON = "//div[text()='%s']";
+
     public ProjectRepositoryPage(WebDriver driver) {
         super(driver);
     }

@@ -16,7 +16,7 @@ public enum ProjectAccessType {
 
     public static ProjectAccessType fromString(String value) {
         for (ProjectAccessType projectAccessType : ProjectAccessType.values()) {
-            if(projectAccessType.getName().equals(value)){
+            if (projectAccessType.getName().equals(value)) {
                 return projectAccessType;
             }
         }

@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class LoginTests extends BaseTest{
+public class LoginTests extends BaseTest {
 
     @Severity(SeverityLevel.BLOCKER)
     @Description("checking the possibility to login after entering the correct email and password")
@@ -32,7 +32,7 @@ public class LoginTests extends BaseTest{
 
     @DataProvider()
     public Object[][] negativeLoginData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"nik12345@mail.com", "12345678", "These credentials do not match our records."},
                 {"nik12345@mail.com", "12345678", "These credentials do not match."},
         };

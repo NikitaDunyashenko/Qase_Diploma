@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class TextArea extends BaseElement{
+public class TextArea extends BaseElement {
 
     private String labelName;
     private final static String TEXTAREA_LOCATOR = "//label[text()='%s']/parent::div/parent::div/textarea";

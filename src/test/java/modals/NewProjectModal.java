@@ -8,7 +8,7 @@ import models.Project;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class NewProjectModal extends BaseModal{
+public class NewProjectModal extends BaseModal {
     public NewProjectModal(WebDriver driver) {
         super(driver);
     }

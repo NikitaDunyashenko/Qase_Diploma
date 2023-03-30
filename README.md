@@ -1,6 +1,8 @@
 General information about the platform:
 
-Qase is a test management platform that provides organization, tracking, and reporting for manual and automated software testing. It allows organizing test cases into logical groups called Test Suites, defining the test case properties, such as severity and priority. Describe the test case’s pre-conditions, post-conditions, and steps to reproduce.
+Qase is a test management platform that provides organization, tracking, and reporting for manual and automated software
+testing. It allows organizing test cases into logical groups called Test Suites, defining the test case properties, such
+as severity and priority. Describe the test case’s pre-conditions, post-conditions, and steps to reproduce.
 
 Checklist:
 
@@ -34,11 +36,13 @@ Checklist:
    b) search for the project by a keyword
 
 Mandatory to be installed:
+
 1. Java JDK: 18
 2. Maven version: 3.0.0-M5
 3. Allure version: 2.10.0
 
 Libraries used in the project:
+
 1. selenium-java (version: 3.141.59)
 2. testNG (version: 7.4.0)
 3. WebDriverManager (version: 5.3.0)
@@ -51,10 +55,12 @@ Libraries used in the project:
 10. gson (version: 2.10)
 
 Instructions before running tests:
+
 1. Clone the repository;
 2. Change username and password in config.properties file to your owns.
 
 Instructions for running tests:
+
 1. Smoke Tests: mvn clean test -DsuiteXmlFile = "smokeTests.xml"
 2. Regression Tests: mvn clean test -DsuiteXmlFile = "regressionTests.xml"
 3. Smoke API Tests: mvn clean test -DsuiteXmlFile = "smokeApiTests.xml"

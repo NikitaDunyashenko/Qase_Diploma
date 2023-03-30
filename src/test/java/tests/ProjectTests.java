@@ -96,7 +96,7 @@ public class ProjectTests extends BaseTest {
 
     @DataProvider()
     public Object[][] projectData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"Salesforce_", "SF", "The project is designed to track test activities of Salesforce", ProjectAccessType.PUBLIC},
                 {"SauceDemo_", "SD", "The project is designed to track test activities of SauceDemo", ProjectAccessType.PRIVATE},
         };

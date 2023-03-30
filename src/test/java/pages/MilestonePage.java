@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class MilestonePage extends BaseProjectPage{
+public class MilestonePage extends BaseProjectPage {
 
     private final static By CREATE_MILESTONE_BUTTON = By.id("createButton");
     private final static String CLICK_SPECIFIC_MILESTONE = "//a[text()='%s']";

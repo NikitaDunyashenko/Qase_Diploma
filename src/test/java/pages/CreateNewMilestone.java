@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class CreateNewMilestone extends BaseProjectPage{
+public class CreateNewMilestone extends BaseProjectPage {
 
     private final static By SAVE_BUTTON = By.cssSelector("[type=submit]");
 

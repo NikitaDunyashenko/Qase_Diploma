@@ -5,11 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class DataPlaceholderForSteps extends BaseElement{
+public class DataPlaceholderForSteps extends BaseElement {
 
     private final static String DATA_PLACEHOLDER_FOR_STEPS_LOCATOR = "//div[@title='%d']//parent::div/parent::div/following-sibling::div//p[@data-placeholder='%s']";
     private int title;
     private String itemName;
+
     public DataPlaceholderForSteps(WebDriver driver, int title, String itemName) {
         super(driver);
         this.title = title;

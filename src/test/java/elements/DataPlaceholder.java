@@ -5,10 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class DataPlaceholder extends BaseElement{
+public class DataPlaceholder extends BaseElement {
 
     private final static String DATA_PLACEHOLDER_LOCATOR = "//label[text()='%s']//parent::div//following-sibling::div//p[@class]";
     private String labelName;
+
     public DataPlaceholder(WebDriver driver, String labelName) {
         super(driver);
         this.labelName = labelName;

@@ -4,10 +4,11 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 
 @Log4j2
-public class ProjectsPage extends HomePage{
+public class ProjectsPage extends HomePage {
 
     private final static By PROJECT_ICON = By.cssSelector(".text-center.project-icon");
     private final static By CREATE_NEW_PROJECT_BUTTON = By.id("createButton");
@@ -75,8 +76,8 @@ public class ProjectsPage extends HomePage{
         waitForLoadingElementDisappears();
         log.info("getting the results after entering project name");
         List<WebElement> projectResults = driver.findElements(PROJECT_RESULTS);
-        for(int i = 0; i < projectResults.size(); i++) {
-            if(!projectResults.get(i).getText().contains(projectName)){
+        for (int i = 0; i < projectResults.size(); i++) {
+            if (!projectResults.get(i).getText().contains(projectName)) {
                 num++;
             }
         }

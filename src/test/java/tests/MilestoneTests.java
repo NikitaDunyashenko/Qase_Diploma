@@ -11,7 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class MilestoneTests extends BaseTest{
+public class MilestoneTests extends BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     public void createProject() {

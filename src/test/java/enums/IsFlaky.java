@@ -15,8 +15,8 @@ public enum IsFlaky {
     }
 
     public static IsFlaky fromString(String name) {
-        for(IsFlaky isFlaky : IsFlaky.values()) {
-            if(isFlaky.getName().equals(name)) {
+        for (IsFlaky isFlaky : IsFlaky.values()) {
+            if (isFlaky.getName().equals(name)) {
                 return isFlaky;
             }
         }

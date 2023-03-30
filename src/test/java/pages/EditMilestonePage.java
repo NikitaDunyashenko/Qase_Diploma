@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class EditMilestonePage extends BaseProjectPage{
+public class EditMilestonePage extends BaseProjectPage {
 
     private final static String INPUT_LOCATOR = "//label[text()='%s']/parent::div//following-sibling::div//input";
     private final static String DATA_PLACEHOLDER_LOCATOR = "//label[text()='%s']//parent::div//following-sibling::div//div[contains(@class,'ww-container')]//p";

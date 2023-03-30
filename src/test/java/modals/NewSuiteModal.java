@@ -8,7 +8,7 @@ import models.Suite;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class NewSuiteModal extends BaseModal{
+public class NewSuiteModal extends BaseModal {
 
     public NewSuiteModal(WebDriver driver) {
         super(driver);

@@ -15,8 +15,8 @@ public enum StatusMilestone {
     }
 
     public static StatusMilestone fromString(String name) {
-        for(StatusMilestone statusMilestone : StatusMilestone.values()) {
-            if(statusMilestone.getName().equals(name)) {
+        for (StatusMilestone statusMilestone : StatusMilestone.values()) {
+            if (statusMilestone.getName().equals(name)) {
                 return statusMilestone;
             }
         }

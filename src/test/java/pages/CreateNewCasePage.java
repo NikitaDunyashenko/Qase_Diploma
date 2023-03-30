@@ -10,7 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 @Log4j2
-public class CreateNewCasePage extends BaseProjectPage{
+public class CreateNewCasePage extends BaseProjectPage {
 
     private final static By ADD_PARAMETER_BUTTON = By.xpath("//span[text()='Add parameter']/parent::button");
     private final static By ADD_STEP_BUTTON = By.xpath("//span[text()=' Add step']/parent::button");
